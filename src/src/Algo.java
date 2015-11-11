@@ -13,11 +13,7 @@ public class Algo {
 	}
 
 	private BigInteger rGenerator(BigInteger j, BigInteger k) {
-		BigInteger r = squareRoot((N.multiply(k))).add(j);// floor(sqrt(N*k)) +
-															// j
-
-		return r;
-
+		return squareRoot((N.multiply(k))).add(j);// floor(sqrt(N*k))+j
 	}
 
 	/** Calculate the square root of a BigInteger in logarithmic time */
