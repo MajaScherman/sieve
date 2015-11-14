@@ -25,10 +25,13 @@
  * all stages. 
  */
 
+package src;
+
+import java.math.BigInteger;
 
 public class RVal {
-    private int binary[];
-    private int exponents[];
+    private byte[] binary;
+    private short[] exponents;
 
     private BigInteger r;
     private BigInteger rSquareMod;
@@ -41,19 +44,20 @@ public class RVal {
     //          exponents so that matching in solution validation is possible
     public RVal(BigInteger r, int size) {
         this.r = r;
-        binary = new int[size];
-        exponents = new int[size];
+
+        binary = new byte[size];
+        exponents = new short[size];
     }
 
     //
-    // Setters 
+    // Setters
     //
 
-    public void setBinaryValue( int idx, int val) {
+    public void setBinaryValue( int idx, byte val) {
         binary[idx] = val;
     }
 
-    public void setExponentsValue( int idx, int val) {
+    public void setExponentsValue( int idx, short val) {
         exponents[idx] = val;
     }
 
@@ -69,7 +73,7 @@ public class RVal {
     // Getters
     //
 
-    public int[] getBinaryRow() {
+    public byte[] getBinaryRow() {
         return binary;
     }
 
@@ -85,7 +89,7 @@ public class RVal {
         return r;
     }
 
-    public BigInteget getRSquareMod() {
+    public BigInteger getRSquareMod() {
         return rSquareMod;
     }
 
