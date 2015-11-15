@@ -48,6 +48,13 @@ public class RVal {
         binary = new byte[size];
         exponents = new short[size];
     }
+    
+    public RVal(BigInteger r, short[] exponents, int idx) {
+    	this.r = r;
+    	this.exponents = exponents;
+    	this.largestFactorIdx = idx;
+    }
+    		
 
     //
     // Setters

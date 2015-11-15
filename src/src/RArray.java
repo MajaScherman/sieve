@@ -150,7 +150,6 @@ public class RArray {
 	    return rVal; 
 	}
 	
-	
 	/** Calculate the square root of a BigInteger in logarithmic time */
 	// naturally floors it?
 	private BigInteger squareRoot(BigInteger x) {
@@ -164,7 +163,6 @@ public class RArray {
 		}
 		return left;
 	}
-
 	
 	// Used only for test cases
 	public void setRValArray(RVal[] array) {

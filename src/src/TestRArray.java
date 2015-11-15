@@ -95,7 +95,8 @@ public class TestRArray {
 		
 	}
 	
-	
+	// What sort of asserts can we put here? Now I have it print the items
+	// for us to manually check
 	@Test
 	public void testGetArray() {
 		BigInteger N = new BigInteger("16637");
@@ -117,6 +118,7 @@ public class TestRArray {
 			System.out.println(r + " | " + rSquareMod + " | " +
 					binArray + " ;  " + expArray + " ;  idx: " + largestIdx);
 		}
+		System.out.println();
 	}
 	
 	@Test
