@@ -56,6 +56,10 @@ public class RVal {
     public void setBinaryValue( int idx, byte val) {
         binary[idx] = val;
     }
+    
+    public void setBinaryRow(byte [] binary) {
+    	this.binary = binary;
+    }
 
     public void setExponentsValue( int idx, short val) {
         exponents[idx] = val;
@@ -76,8 +80,12 @@ public class RVal {
     public byte[] getBinaryRow() {
         return binary;
     }
+    
+    public short[] getExponentRow() {
+    	return exponents;
+    }
 
-    public int getExp(int idx) {
+    public int getExponent(int idx) {
         return exponents[idx];
     }
 

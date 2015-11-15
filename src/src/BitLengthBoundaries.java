@@ -1,4 +1,7 @@
+package src;
+
 /* A simple class to find the size of a BigInteger using the bitLength() 
+ *
  * function. We input the upper and lower bound of the 12 digit factors
  * involved in exercises 1 and 2 to determine storage needs as requested in
  * exercise 2. Our assigned N includd for curiosity's sake.
