@@ -45,6 +45,8 @@ public class TestSolutionsProcessor {
 	
 	@Test
 	public void testFindFactor() {
+		final String LOG_TAG = "testFindFactor";
+		
 		RVal[] rValArray = new RVal[12]; // 12 = test L
 		rValArray[0] = new RVal(new BigInteger("225"),
 						new short[] {1,1,0,1,0,0,1,0,0,0},
@@ -82,7 +84,7 @@ public class TestSolutionsProcessor {
 		BigInteger q = sp.findFactor();
 		
 		assertTrue(q.toString().equals("131"));
-		System.out.println("Good first - no jump notice");
+		System.out.println(LOG_TAG + "-- Good first - no jump notice");
 		
 		// Test bad solution first
 		byte[][] solutions = { {1,0,1,1,0,0,0,0,0,0,0,0},
@@ -92,7 +94,7 @@ public class TestSolutionsProcessor {
 		q = sp.findFactor();
 
 		assertTrue(q.toString().equals("131"));
-		System.out.println("Bad first - there should be a jump notice above");
+		System.out.println(LOG_TAG + "-- Bad first - there should be a jump notice above \n");
 		
 	}
 

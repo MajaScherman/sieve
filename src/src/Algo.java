@@ -15,11 +15,11 @@ public class Algo {
     private BigInteger N;
     private RVal[] rValArray;
 
-	public Algo(BigInteger N) {
+	public Algo(BigInteger N, int factorbaseSize) {
 		this.N = N;
 
         // generate factorbase
-        generateFactorbase(15);
+        generateFactorbase(factorbaseSize);
         fSize = F.length;
         L = fSize + BUFFER_CONST;
         

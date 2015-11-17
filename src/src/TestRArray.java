@@ -35,6 +35,8 @@ public class TestRArray {
 	// for each number, check that binary row, exponent row, and isSmooth are as expected
 	@Test
 	public void testFactorR() {
+		System.out.println("testFactorR: \nbinary \nexponents \n(See source code for expected results)");
+		
 		BigInteger N = new BigInteger("16637");
 		final int F[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 		final int L = 12; // TODO L=2^10
@@ -65,8 +67,8 @@ public class TestRArray {
 		assertEquals("Smoothness", 1, isSmooth);
 		assertTrue(Arrays.equals( bin1, rVal.getBinaryRow()));
 		assertTrue(Arrays.equals( exp1, rVal.getExponentRow()));
-		System.out.println( Arrays.toString(rVal.getBinaryRow()));
-		System.out.println( Arrays.toString(rVal.getExponentRow()) + "\n");
+		System.out.println(Arrays.toString(rVal.getBinaryRow()));
+		System.out.println(Arrays.toString(rVal.getExponentRow()) + "\n");
 		
 		// A not smooth number
 		k = new BigInteger("2");
@@ -77,8 +79,8 @@ public class TestRArray {
 		assertEquals("Smoothness", 0, isSmooth);
 		assertTrue(Arrays.equals( bin2, rVal.getBinaryRow()));
 		assertTrue(Arrays.equals( exp2, rVal.getExponentRow()));
-		System.out.println( Arrays.toString(rVal.getBinaryRow()));
-		System.out.println( Arrays.toString(rVal.getExponentRow()) + "\n");
+		System.out.println(Arrays.toString(rVal.getBinaryRow()));
+		System.out.println(Arrays.toString(rVal.getExponentRow()) + "\n");
 		
 		// A smooth number with exponents who have multiplicity > 1
 		j = new BigInteger("8");
@@ -90,8 +92,8 @@ public class TestRArray {
 		assertEquals("Smoothness", 1, isSmooth);
 		assertTrue(Arrays.equals( bin3, rVal.getBinaryRow()));
 		assertTrue(Arrays.equals( exp3, rVal.getExponentRow()));
-		System.out.println( Arrays.toString(rVal.getBinaryRow()));
-		System.out.println( Arrays.toString(rVal.getExponentRow()) + "\n");
+		System.out.println(Arrays.toString(rVal.getBinaryRow()));
+		System.out.println(Arrays.toString(rVal.getExponentRow()) + "\n");
 		
 	}
 	
@@ -99,6 +101,7 @@ public class TestRArray {
 	// for us to manually check
 	@Test
 	public void testGetArray() {
+		System.out.println("testGetArray:");
 		BigInteger N = new BigInteger("16637");
 		final int F[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 		final int L = 12; // TODO L=2^10
