@@ -10,6 +10,7 @@ public class Algo {
 	private int fSize;
 	private int L; // TODO L=2^10
 	private final int BUFFER_CONST = 24;
+	private final int FACTORBASE_CONST = 1000;
 
         
     private BigInteger N;
@@ -19,14 +20,14 @@ public class Algo {
 		this.N = N;
 
         // generate factorbase
-        generateFactorbase(15);
+        generateFactorbase(FACTORBASE_CONST);
         fSize = F.length;
         L = fSize + BUFFER_CONST;
         
         // get all r values, aka populate rValArray
-		RArray rArray = new RArray(L,fSize,N, F);
-		rValArray = rArray.getArray();
-		
+//		RArray rArray = new RArray(L,N, F);
+//		rValArray = rArray.getArray();
+//		
 //        // TODO Get x*M = 0 Solutions
 //		SolutionsManager sm = new SolutionsManager();
 //        
@@ -36,7 +37,7 @@ public class Algo {
 //        SolutionsProcessor solnProcessor = 
 //        		new SolutionsProcessor(rValArray, F, sm, N);
 //        BigInteger q = solnProcessor.findFactor();
-//
+//        
 //        // TODO Test that solution is correct
 //        BigInteger p = N.divide(q);
 //        checkQ(q, p);

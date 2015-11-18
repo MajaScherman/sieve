@@ -16,14 +16,13 @@ public class TestRArray {
 		BigInteger N = new BigInteger("16637");
 		final int F[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 		final int L = 12; // TODO L=2^10
-		final int fSize = F.length;
 
 		BigInteger j = new BigInteger("2");
 		BigInteger k = new BigInteger("3");
 		BigInteger r = new BigInteger("225");
 		BigInteger rSquareMod = new BigInteger("714");
 		
-		RArray rArray = new RArray(L, fSize, N, F);
+		RArray rArray = new RArray(L, N, F);
 		
 		RVal rVal = rArray.rGenerator(j,k);
 		
@@ -38,7 +37,6 @@ public class TestRArray {
 		BigInteger N = new BigInteger("16637");
 		final int F[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 		final int L = 12; // TODO L=2^10
-		final int fSize = F.length;
 		
 		BigInteger j;
 		BigInteger k;
@@ -53,7 +51,7 @@ public class TestRArray {
 		short[] exp2 = {1,1,0,0,0,0,0,0,0,0};
 		short[] exp3 = {3,0,0,2,0,0,0,1,0,0};
 		
-		RArray rArray = new RArray(L, fSize, N, F);		
+		RArray rArray = new RArray(L, N, F);		
 		
 		// A smooth number where binary[] == exponents[]
 		j = new BigInteger("2");
@@ -102,9 +100,8 @@ public class TestRArray {
 		BigInteger N = new BigInteger("16637");
 		final int F[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 		final int L = 12; // TODO L=2^10
-		final int fSize = F.length;
 		
-		RArray rArray = new RArray(L, fSize, N, F);
+		RArray rArray = new RArray(L, N, F);
 		rArray.getArray();
 		
 		RVal[] rValArray = rArray.getRValArray();
@@ -134,7 +131,7 @@ public class TestRArray {
 		
 		assertTrue(rValArray[3] == null);
 		
-		RArray rArray = new RArray(L, fSize, N, F);
+		RArray rArray = new RArray(L, N, F);
 		
 		j = new BigInteger("2");
 		k = new BigInteger("3");
