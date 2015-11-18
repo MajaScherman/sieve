@@ -23,24 +23,7 @@ public class Algo {
         generateFactorbase(FACTORBASE_CONST);
         fSize = F.length;
         L = fSize + BUFFER_CONST;
-        
-        // get all r values, aka populate rValArray
-//		RArray rArray = new RArray(L,N, F);
-//		rValArray = rArray.getArray();
-//		
-//        // TODO Get x*M = 0 Solutions
-//		SolutionsManager sm = new SolutionsManager();
-//        
-//        // TODO cycle through above Solutions until gcd(y-x,N) = p or
-//        // q. Send that p or q to testing
-//		// Tentatively finished - must edit to fit Gaussian implementation
-//        SolutionsProcessor solnProcessor = 
-//        		new SolutionsProcessor(rValArray, F, sm, N);
-//        BigInteger q = solnProcessor.findFactor();
-//        
-//        // TODO Test that solution is correct
-//        BigInteger p = N.divide(q);
-//        checkQ(q, p);
+ 
 	}
 
     /* HELPER METHODS */
@@ -55,7 +38,35 @@ public class Algo {
 		System.out.println(N.toString() + " == " + q.multiply(p).toString() + " ?");
 	}
 	
-	void generateFactorbase(int size) { 
+	/*
+	 * 
+	 */
+	public BigInteger[] getFactors() {
+        // get all r values, aka populate rValArray
+		RArray rArray = new RArray(L,N, F);
+		rValArray = rArray.getArray();
+//		
+//        // TODO Get x*M = 0 Solutions
+//		SolutionsManager sm = new SolutionsManager();
+//        
+//        // TODO cycle through above Solutions until gcd(y-x,N) = p or
+//        // q. Send that p or q to testing
+//		// Tentatively finished - must edit to fit Gaussian implementation
+//        SolutionsProcessor solnProcessor = 
+//        		new SolutionsProcessor(rValArray, F, sm, N);
+//        BigInteger q = solnProcessor.findFactor();
+//        
+//        // TODO Test that solution is correct
+//        BigInteger p = N.divide(q);
+//        checkQ(q, p);
+		
+		return null;
+	}
+	
+	/*
+	 * Generate array of primes (code adapted from project desscription)
+	 */
+	private void generateFactorbase(int size) { 
 		int n = 0;
 		int i, j, k;
 		F = new int[size]; // degree of 24
