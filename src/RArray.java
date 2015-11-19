@@ -36,7 +36,7 @@ public class RArray {
 	        
 	        // increment k and j in a staggered pattern, so that r grows
 	        // more slowly. (e.g. (k,j = (1,1);(1,2);(2,2);(2,3); etc..)
-	        if (jkInc % 7 == 0) {
+	        if (jkInc % 2 == 0) {
 	            j = j.add(BigInteger.ONE);
 	            jkInc++;
 	        } else {

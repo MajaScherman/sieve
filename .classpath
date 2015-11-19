@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="/h/d6/p/int15st7/Cryptography/sieve/src/junit4.jar">
-=======
-	<classpathentry kind="lib" path="C:/Users/Maja/Downloads/junit-4.8.2.jar">
->>>>>>> 6ad644e86d505cf5912b83dceaa8389ca3823e8a
-		<attributes>
-			<attribute name="javadoc_location" value="http://www.junit.org/junit/javadoc/4.5"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="src/junit4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

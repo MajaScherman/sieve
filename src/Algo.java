@@ -1,7 +1,9 @@
 package src;
 
-import java.math.*;
-import java.util.Arrays;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 
 public class Algo {
 	// TODO this will have to change to something else
@@ -10,7 +12,7 @@ public class Algo {
 	private int fSize;
 	// private int L; // TODO L=2^10
 	private static final int BUFFER_CONST = 24;
-	private static final int FACTORBASE_CONST = 1000;
+	private static final int FACTORBASE_CONST = 10;
 
 	private BigInteger N;
 	// private RVal[] rValArray;
@@ -26,18 +28,43 @@ public class Algo {
 	}
 
 	public static void main(String[] args) {
-		BigInteger N = new BigInteger("323");
+		BigInteger N = new BigInteger("16637");
 		generateFactorbase(FACTORBASE_CONST);
-		int L = F.length + BUFFER_CONST;
+		int L = 12; // F.length + BUFFER_CONST;
 		RArray rArray = new RArray(L, N, F);
 		RVal[] rValArray = rArray.getArray();
-		int[][] M;
-		int i = 0;
-		for (i = 0; i < rValArray.length; i++) {
-			
-		}
+		Runtime rn = Runtime.getRuntime();
 
-		System.out.println(getFactors());
+		// Write matrix to in-file for Gaussian Elimination
+		// TODO start element-wise. Ideally optimize by writing files in
+		// parallel and then appending
+		int[][] M;
+		int i, j;
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("M.in", "ASCII");
+			writer.println(rValArray.length + " " + F.length);//(L+10)*L,
+			for (i = 0; i < rValArray.length; i++) {
+				System.out.print(rValArray[i].getRSquareMod() + ", ");
+				short[] current = rValArray[i].getExponentRow();
+				for (j = 0; j < current.length - 1; j++) {
+					writer.print(current[j] + " ");
+				}
+				if (i != rValArray.length - 1) {
+					writer.println(current[j]);
+				}else{
+					writer.print(current[j]);
+				}
+
+			}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Call [Runnable] to receive Solutions file
+
+		System.out.println(getFactors() + " You are Cute <3");
 	}
 
 	/* HELPER METHODS */
