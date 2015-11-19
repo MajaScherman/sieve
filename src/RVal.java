@@ -32,16 +32,16 @@ import java.math.BigInteger;
 public class RVal {
     private short[] binary;
     private short[] exponents;
-
     private BigInteger r;
     private BigInteger rSquareMod;
-
     private int largestFactorIdx;
 
-    // Constructor
-    // @param BigInteger r : Y'know...the r
-    // @param int size : length of the factorbase, also length of binary and
-    //          exponents so that matching in solution validation is possible
+    /**
+     * 
+     * @param r
+     * @param size length of the factorbase, also length of binary and
+              exponents so that matching in solution validation is possible'
+     */
     public RVal(BigInteger r, int size) {
         this.r = r;
 
@@ -54,18 +54,13 @@ public class RVal {
     	this.exponents = exponents;
     	this.largestFactorIdx = idx;
     }
-    		
-
-    //
-    // Setters
-    //
-
+    
+    /**
+     * Setters
+     */
+    
     public void setBinaryValue( int idx, short val) {
         binary[idx] = val;
-    }
-    
-    public void setBinaryRow(short [] binary) {
-    	this.binary = binary;
     }
 
     public void setExponentsValue( int idx, short val) {
@@ -80,9 +75,9 @@ public class RVal {
         this.largestFactorIdx = largestFactorIdx;
     }
 
-    //
-    // Getters
-    //
+    /**
+     * Getters
+     */
 
     public short[] getBinaryRow() {
         return binary;

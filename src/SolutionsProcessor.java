@@ -1,11 +1,8 @@
 package src;
 
-import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SolutionsProcessor {
@@ -15,29 +12,21 @@ public class SolutionsProcessor {
 	BigInteger N;
 
 	public SolutionsProcessor(RVal[] rValArray, int[] F, BigInteger N) {
-		// TODO somehow get hold of a solution.
-		// This depends on how we implement Gauss stuff
-
 		this.rValArray = rValArray;
 		this.F = F;
-		// this.file = file;
 		this.N = N;
 	}
 
 	public BigInteger findFactor(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
-		// ArrayList<short> row = new ArrayList<short>();
 		byte[] soln = new byte[rValArray.length];
-
 		sc.nextInt();
-
 		int i;
+
 		for (i = 0; i < rValArray.length; i++) {
 			soln[i] = sc.nextByte();
 		}
 
-		// String x = sc.next();
-		int counter = 0;
 		while (true) {
 			BigInteger xYDiff = getXYDiff(soln);
 			BigInteger gcd = N.gcd(xYDiff); // gcd(y-x)
@@ -46,7 +35,6 @@ public class SolutionsProcessor {
 				sc.close();
 				return gcd;
 			}
-			System.out.println("Jump notice. " + ++counter);
 
 			for (i = 0; i < rValArray.length; i++) {
 				soln[i] = sc.nextByte();
@@ -57,10 +45,8 @@ public class SolutionsProcessor {
 	public BigInteger getXYDiff(byte[] soln) {
 		BigInteger x = new BigInteger("1"); // left side of the equation
 		BigInteger y = new BigInteger("1"); // right side of the equation
-
 		BigInteger current = null;
 		RVal rVal = null; // current RVal to get values from
-
 		int largestIdx; // limit for building y
 		int newExp; // (stored exponent)/2, to build y
 
@@ -74,10 +60,8 @@ public class SolutionsProcessor {
 
 				for (int j = 0; j < largestIdx; j++) {
 					if ((newExp = rVal.getExponent(j)) != 0) {
-
 						current = new BigInteger(Integer.toString(F[j]));
 						current = current.pow(newExp);
-
 						y = y.multiply(current);
 					}
 				}
@@ -88,8 +72,11 @@ public class SolutionsProcessor {
 		return y.subtract(x).mod(N); // y-x
 	}
 
-	/** Calculate the square root of a BigInteger in logarithmic time */
-	// naturally floors it?
+	/**
+	 * Calculate the square root of a BigInteger in logarithmic time
+	 * @param x
+	 * @return
+	 */
 	private BigInteger squareRoot(BigInteger x) {
 		BigInteger right = x, left = BigInteger.ZERO, mid;
 		while (right.subtract(left).compareTo(BigInteger.ONE) > 0) {
