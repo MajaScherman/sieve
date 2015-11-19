@@ -30,7 +30,7 @@ package src;
 import java.math.BigInteger;
 
 public class RVal {
-    private byte[] binary;
+    private short[] binary;
     private short[] exponents;
 
     private BigInteger r;
@@ -45,7 +45,7 @@ public class RVal {
     public RVal(BigInteger r, int size) {
         this.r = r;
 
-        binary = new byte[size];
+        binary = new short[size];
         exponents = new short[size];
     }
     
@@ -60,11 +60,11 @@ public class RVal {
     // Setters
     //
 
-    public void setBinaryValue( int idx, byte val) {
+    public void setBinaryValue( int idx, short val) {
         binary[idx] = val;
     }
     
-    public void setBinaryRow(byte [] binary) {
+    public void setBinaryRow(short [] binary) {
     	this.binary = binary;
     }
 
@@ -84,7 +84,7 @@ public class RVal {
     // Getters
     //
 
-    public byte[] getBinaryRow() {
+    public short[] getBinaryRow() {
         return binary;
     }
     

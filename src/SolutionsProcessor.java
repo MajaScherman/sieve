@@ -1,75 +1,94 @@
 package src;
 
+import java.awt.List;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class SolutionsProcessor {
 	RVal[] rValArray;
-	SolutionsManager sm;
+	File file;
 	int[] F;
 	BigInteger N;
-	
-	public SolutionsProcessor(RVal[] rValArray, int[] F, 
-			SolutionsManager sm, BigInteger N) {
-		// TODO somehow get hold of a solution. 
+
+	public SolutionsProcessor(RVal[] rValArray, int[] F, BigInteger N) {
+		// TODO somehow get hold of a solution.
 		// This depends on how we implement Gauss stuff
-		
+
 		this.rValArray = rValArray;
 		this.F = F;
-		this.sm = sm;
+		// this.file = file;
 		this.N = N;
 	}
-	
-	public BigInteger findFactor() {
-		byte[] soln = sm.getNextSolution();
+
+	public BigInteger findFactor(File file) throws FileNotFoundException {
+		Scanner sc = new Scanner(file);
+		//ArrayList<short> row = new ArrayList<short>();
+		short[] soln = new short[rValArray.length];
 		
+		sc.nextShort();
+		
+		int i;
+		for(i=0;i<rValArray.length; i++){
+			soln[i] = sc.nextShort();
+		}
+		
+		//String x = sc.next();
+		
+
 		while (true) {
 			BigInteger xYDiff = getXYDiff(soln);
 			BigInteger gcd = N.gcd(xYDiff); // gcd(y-x)
-			
-			if (gcd.compareTo(BigInteger.ONE) != 0 &&
-					N.compareTo(gcd) != 0) {
+
+			if (gcd.compareTo(BigInteger.ONE) != 0 && N.compareTo(gcd) != 0) {
+				sc.close();
 				return gcd;
 			}
 			System.out.println("Jump notice.");
-			soln = sm.getNextSolution();
+			
+			for(i=0;i<rValArray.length; i++){
+				soln[i] = sc.nextShort();
+			}
 		}
 	}
-	
-	public BigInteger getXYDiff(byte[] soln) {		
+
+	public BigInteger getXYDiff(short[] soln) {
 		BigInteger x = new BigInteger("1"); // left side of the equation
 		BigInteger y = new BigInteger("1"); // right side of the equation
-		
+
 		BigInteger current = null;
 		RVal rVal = null; // current RVal to get values from
-		
+
 		int largestIdx; // limit for building y
 		int newExp; // (stored exponent)/2, to build y
-		
+
 		// build x and y
 		for (int i = 0; i < soln.length; i++) {
 			if (soln[i] == 1) { // if this r appears in solution
 				rVal = rValArray[i];
 				largestIdx = rVal.getLargestFactorIdx() + 1;
-				
+
 				x = x.multiply(rVal.getR());
-				
+
 				for (int j = 0; j < largestIdx; j++) {
-					if ( (newExp = rVal.getExponent(j) ) != 0) {
-						
-						current = new BigInteger( Integer.toString(F[j]) );
+					if ((newExp = rVal.getExponent(j)) != 0) {
+
+						current = new BigInteger(Integer.toString(F[j]));
 						current = current.pow(newExp);
-						
+
 						y = y.multiply(current);
 					}
 				}
 			}
 		}
-		
+
 		y = squareRoot(y);
 		return y.subtract(x).mod(N); // y-x
 	}
-	
-	
+
 	/** Calculate the square root of a BigInteger in logarithmic time */
 	// naturally floors it?
 	private BigInteger squareRoot(BigInteger x) {
@@ -83,5 +102,5 @@ public class SolutionsProcessor {
 		}
 		return left;
 	}
-	
+
 }

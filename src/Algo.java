@@ -1,5 +1,6 @@
 package src;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,43 +9,36 @@ import java.math.BigInteger;
 
 public class Algo {
 	// TODO this will have to change to something else
-	private int certainty = 1000;
+	private static int certainty = 1000;
 	private static int F[];
-	private int fSize;
+	// private int fSize;
 	// private int L; // TODO L=2^10
 	private static final int BUFFER_CONST = 24;
-	private static final int FACTORBASE_CONST = 10;
+	private static final int FACTORBASE_CONST = 1000;
+	private static final String N_const = "220744554721994695419563";// "392742364277";
 
-	private BigInteger N;
-	// private RVal[] rValArray;
-
-	public Algo(BigInteger N) {
-		// this.N = N;
-		//
-		// // generate factorbase
-		// generateFactorbase(FACTORBASE_CONST);
-		// fSize = F.length;
-		// L = fSize + BUFFER_CONST;
-
-	}
+	// private static BigInteger N;
 
 	public static void main(String[] args) {
-		BigInteger N = new BigInteger("16637");
+		BigInteger N = new BigInteger(N_const);// new BigInteger("16637");
+		BigInteger q, p;
 		generateFactorbase(FACTORBASE_CONST);
-		int L = 12; // F.length + BUFFER_CONST;
+
+		System.out.println("factorbase ready");
+		int L = F.length + BUFFER_CONST;
 		RArray rArray = new RArray(L, N, F);
+		System.out.println("hej");
 		RVal[] rValArray = rArray.getArray();
 		Runtime rn = Runtime.getRuntime();
-
+		System.out.println("factorbase ready2");
 		// Write matrix to in-file for Gaussian Elimination
 		// TODO start element-wise. Ideally optimize by writing files in
 		// parallel and then appending
-		int[][] M;
 		int i, j;
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter("M.in", "ASCII");
-			writer.println(rValArray.length + " " + F.length);//(L+10)*L,
+			writer.println(rValArray.length + " " + F.length);// (L+10)*L,
 			for (i = 0; i < rValArray.length; i++) {
 				System.out.print(rValArray[i].getRSquareMod() + ", ");
 				short[] current = rValArray[i].getExponentRow();
@@ -53,7 +47,7 @@ public class Algo {
 				}
 				if (i != rValArray.length - 1) {
 					writer.println(current[j]);
-				}else{
+				} else {
 					writer.print(current[j]);
 				}
 
@@ -66,48 +60,32 @@ public class Algo {
 		// Call [Runnable] to receive Solutions file
 		try {
 			Process process = rn.exec("./GaussBin.exe M.in Solns.out");
+			// Get the file
+			File solutionsFile = new File("Solns.out");// however you get a file
+			SolutionsProcessor solnProc = new SolutionsProcessor(rValArray, F, N);
+
+			q = solnProc.findFactor(solutionsFile);
+			p = N.divide(q);
+
+			checkQ(q, p);
+			System.out.println(q.toString() + ", " + p.toString() + " You are Cute <3");
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-
-		System.out.println(getFactors() + " You are Cute <3");
+		}
 	}
 
 	/* HELPER METHODS */
-	private void checkQ(BigInteger q, BigInteger p) {
+	private static void checkQ(BigInteger q, BigInteger p) {
 		// check that each is a 12 digit prime number, and that their product =
 		// N
 		System.out.println("q = " + q.toString() + "  isProbablyPrime: " + q.isProbablePrime(certainty));
 
 		System.out.println("p = " + p.toString() + " isProbablyPrime: " + p.isProbablePrime(certainty));
 
-		System.out.println(N.toString() + " == " + q.multiply(p).toString() + " ?");
-	}
-
-	/*
-	 * 
-	 */
-	public static BigInteger[] getFactors() {
-		// // get all r values, aka populate rValArray
-		// RArray rArray = new RArray(L, N, F);
-		// rValArray = rArray.getArray();
-		//
-		// // TODO Get x*M = 0 Solutions
-		// SolutionsManager sm = new SolutionsManager();
-		//
-		// // TODO cycle through above Solutions until gcd(y-x,N) = p or
-		// // q. Send that p or q to testing
-		// // Tentatively finished - must edit to fit Gaussian implementation
-		// SolutionsProcessor solnProcessor = new SolutionsProcessor(rValArray,
-		// F, sm, N);
-		// BigInteger q = solnProcessor.findFactor();
-		//
-		// // TODO Test that solution is correct
-		// BigInteger p = N.divide(q);
-		// checkQ(q, p);
-
-		return null;
+		// System.out.println(N.toString() + " == " + q.multiply(p).toString() +
+		// " ?");
 	}
 
 	/*

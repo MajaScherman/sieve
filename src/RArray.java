@@ -43,6 +43,7 @@ public class RArray {
 	            k = k.add(BigInteger.ONE);
 	            jkInc++;
 	        }
+	        System.out.println("jk: " + j.toString() + " " + k.toString());
 	
 	        // get a new r to process and factor
 	        // TODO make parallel
