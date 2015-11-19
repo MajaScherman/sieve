@@ -26,19 +26,18 @@ public class SolutionsProcessor {
 
 	public BigInteger findFactor(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
-		//ArrayList<short> row = new ArrayList<short>();
-		short[] soln = new short[rValArray.length];
-		
-		sc.nextShort();
-		
-		int i;
-		for(i=0;i<rValArray.length; i++){
-			soln[i] = sc.nextShort();
-		}
-		
-		//String x = sc.next();
-		
+		// ArrayList<short> row = new ArrayList<short>();
+		byte[] soln = new byte[rValArray.length];
 
+		sc.nextInt();
+
+		int i;
+		for (i = 0; i < rValArray.length; i++) {
+			soln[i] = sc.nextByte();
+		}
+
+		// String x = sc.next();
+		int counter = 0;
 		while (true) {
 			BigInteger xYDiff = getXYDiff(soln);
 			BigInteger gcd = N.gcd(xYDiff); // gcd(y-x)
@@ -47,15 +46,15 @@ public class SolutionsProcessor {
 				sc.close();
 				return gcd;
 			}
-			System.out.println("Jump notice.");
-			
-			for(i=0;i<rValArray.length; i++){
-				soln[i] = sc.nextShort();
+			System.out.println("Jump notice. " + ++counter);
+
+			for (i = 0; i < rValArray.length; i++) {
+				soln[i] = sc.nextByte();
 			}
 		}
 	}
 
-	public BigInteger getXYDiff(short[] soln) {
+	public BigInteger getXYDiff(byte[] soln) {
 		BigInteger x = new BigInteger("1"); // left side of the equation
 		BigInteger y = new BigInteger("1"); // right side of the equation
 

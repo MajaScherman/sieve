@@ -15,7 +15,7 @@ public class Algo {
 	// private int L; // TODO L=2^10
 	private static final int BUFFER_CONST = 24;
 	private static final int FACTORBASE_CONST = 1000;
-	private static final String N_const = "220744554721994695419563";// "392742364277";
+	private static final String N_const = "220744554721994695419563";
 
 	// private static BigInteger N;
 
@@ -40,7 +40,7 @@ public class Algo {
 			writer = new PrintWriter("M.in", "ASCII");
 			writer.println(rValArray.length + " " + F.length);// (L+10)*L,
 			for (i = 0; i < rValArray.length; i++) {
-				System.out.print(rValArray[i].getRSquareMod() + ", ");
+				//System.out.print(rValArray[i].getRSquareMod() + ", ");
 				short[] current = rValArray[i].getExponentRow();
 				for (j = 0; j < current.length - 1; j++) {
 					writer.print(current[j] + " ");
@@ -53,18 +53,20 @@ public class Algo {
 
 			}
 			writer.close();
+			System.out.println("Writer done.");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Call [Runnable] to receive Solutions file
 		try {
-			Process process = rn.exec("./GaussBin.exe M.in Solns.out");
+			Process process = rn.exec("./GaussBin.o M.in Solns.txt");
 			// Get the file
-			File solutionsFile = new File("Solns.out");// however you get a file
+			File solutionsFile = new File("Solns.txt");// however you get a file
+			System.out.println("Solutions file ready.");
 			SolutionsProcessor solnProc = new SolutionsProcessor(rValArray, F, N);
-
 			q = solnProc.findFactor(solutionsFile);
+			System.out.println("Ahhhhhhhhhhhhhh.");
 			p = N.divide(q);
 
 			checkQ(q, p);

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 public class RArray {
+	private final String JLIM_CONST = "100";
 	private RVal[] rValArray;
 	private int fSize;
 	private int[] F;
@@ -33,17 +34,18 @@ public class RArray {
 	
 	    // this is master while: manage acquisition of rValArray
 	    while (counter < L) {
+	    	BigInteger jLim = new BigInteger(JLIM_CONST);
 	        
 	        // increment k and j in a staggered pattern, so that r grows
 	        // more slowly. (e.g. (k,j = (1,1);(1,2);(2,2);(2,3); etc..)
-	        if (jkInc % 2 == 0) {
+	        if (j.compareTo(jLim) <= 0) {
 	            j = j.add(BigInteger.ONE);
-	            jkInc++;
 	        } else {
 	            k = k.add(BigInteger.ONE);
-	            jkInc++;
+	            j = new BigInteger("2");
+		        System.out.println("jk: " + j.toString() + " " + k.toString());
 	        }
-	        System.out.println("jk: " + j.toString() + " " + k.toString());
+
 	
 	        // get a new r to process and factor
 	        // TODO make parallel
@@ -73,6 +75,7 @@ public class RArray {
 		}
 	    // if not a duplicate, store!
 	    rValArray[counter] = testVal;
+	    System.out.println("R added! " + counter);
 	    //System.out.println("new rVal = " + rValArray[counter].getR().intValue());
 	    return ++counter;
 	}
