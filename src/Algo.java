@@ -1,6 +1,7 @@
 package src;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -63,6 +64,12 @@ public class Algo {
 			e.printStackTrace();
 		}
 		// Call [Runnable] to receive Solutions file
+		try {
+			Process process = rn.exec("./GaussBin.exe M.in Solns.out");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 
 		System.out.println(getFactors() + " You are Cute <3");
 	}
