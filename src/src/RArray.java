@@ -10,12 +10,13 @@ public class RArray {
 	private BigInteger N;
 	int L;
 
-	public RArray(int L, int fSize, BigInteger N, int[] F) {
+	public RArray(int L, BigInteger N, int[] F) {
 		rValArray = new RVal[L];		
-		this.fSize = fSize;
 		this.F = F;
 		this.N = N;
 		this.L = L;
+		
+		fSize = F.length;
 	}
 	
 	public RVal[] getArray() {

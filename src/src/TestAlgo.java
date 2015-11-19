@@ -10,7 +10,7 @@ public class TestAlgo {
 	@Test
 	public void testGenerateFactorbase() {
 		System.out.println("testGenerateFactorbase");
-		new Algo(new BigInteger("16637"), 50);
+		new Algo(new BigInteger("16637"));
 		return;
 	}
 
