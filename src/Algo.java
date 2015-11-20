@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 
 public class Algo {
-	private static int certainty = 1000;
 	private static int F[];
 	private static final int BUFFER_CONST = 10;
 	private static final int FACTORBASE_CONST = 1024;
@@ -62,11 +61,9 @@ public class Algo {
 
 	/* HELPER METHODS */
 	private static void presentation(BigInteger q, BigInteger p) {
-		// check that each is a 12 digit prime number, and that their product =
-		// N
-		System.out.println("q = " + q.toString() + "  isProbablyPrime: " + q.isProbablePrime(certainty));
-		System.out.println("p = " + p.toString() + "  isProbablyPrime: " + p.isProbablePrime(certainty));
-		System.out.println(q.toString() + ", " + p.toString());
+		System.out.println("p: " + p.toString() + ", q: " + q.toString());
+		System.out.println("Inserted N: " + N_const);
+		System.out.println("p * q     : " + p.multiply(q));
 	}
 
 	/**
