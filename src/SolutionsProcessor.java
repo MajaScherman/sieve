@@ -27,7 +27,7 @@ public class SolutionsProcessor {
 			soln[i] = sc.nextByte();
 		}
 
-		while (true) {
+		while (sc.hasNext()) {
 			BigInteger xYDiff = getXYDiff(soln);
 			BigInteger gcd = N.gcd(xYDiff); // gcd(y-x)
 
@@ -40,6 +40,8 @@ public class SolutionsProcessor {
 				soln[i] = sc.nextByte();
 			}
 		}
+		sc.close();
+		return null;
 	}
 
 	public BigInteger getXYDiff(byte[] soln) {
@@ -67,7 +69,7 @@ public class SolutionsProcessor {
 				}
 			}
 		}
-
+		
 		y = squareRoot(y);
 		return y.subtract(x).mod(N); // y-x
 	}
